@@ -2,7 +2,7 @@
 
 namespace Phpay360\Libraries;
 
-use Phpay360\config\Config;
+use Phpay360\Config\Config;
 
 class Payment extends Config
 {
