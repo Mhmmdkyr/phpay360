@@ -1,0 +1,21 @@
+{
+    "name": "mhmmdkyr/phpay360",
+    "description": "Create Pay360 payment link and get paid.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mhmmdkyr\\Phpay360\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Muhammed Kayar",
+            "email": "mhmmdkyr@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "laravel/framework": "^9.19"
+    }
+}
