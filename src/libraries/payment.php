@@ -2,9 +2,9 @@
 
 namespace Phpay360\Libraries;
 
-use Phpay360\config\config;
+use Phpay360\config\Config;
 
-class payment extends config
+class Payment extends Config
 {
 
     public function getLink($payment_amount, $description = "")
@@ -30,10 +30,9 @@ class payment extends config
             ]
         ];
         try {
-
-           
+            $url = $this->{($this->type == 0 ? 'test' : 'prod') . '_url'} . '/hosted/rest/sessions/' . $this->merchantKey . '/payments';
+            $return = $this->call($url, $data);
         } catch (\Exception $e) {
-
             $return = array(
                 "status" => 0,
                 "data" => array(
@@ -45,7 +44,6 @@ class payment extends config
                 ),
             );
         }
-
         return $return;
     }
 
@@ -59,22 +57,22 @@ class payment extends config
             'Content-Type: application/json',
         );
     }
-    public function call($url)
+    protected function call($url, $data)
     {
 
         $array = array(
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => 'UTF-8',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => $this->method,
-            CURLOPT_HTTPHEADER => $this->getHeaders(),
+            'CURLOPT_URL' => $url,
+            'CURLOPT_RETURNTRANSFER' => true,
+            'CURLOPT_ENCODING' => 'UTF-8',
+            'CURLOPT_MAXREDIRS' => 10,
+            'CURLOPT_TIMEOUT' => 0,
+            'CURLOPT_FOLLOWLOCATION' => true,
+            'CURLOPT_HTTP_VERSION' => CURL_HTTP_VERSION_1_1,
+            'CURLOPT_CUSTOMREQUEST' => $this->method,
+            'CURLOPT_HTTPHEADER' => $this->getHeaders(),
         );
 
-        if ($this->method == "POST") $array[CURLOPT_POSTFIELDS] = json_encode($this->post_data);
+        $array['CURLOPT_POSTFIELDS'] = json_encode($data);
 
         $curl = curl_init();
 
