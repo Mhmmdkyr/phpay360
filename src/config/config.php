@@ -1,14 +1,6 @@
 <?php
 
 namespace Phpay360\Config;
-return [
-    'baseUrl' => 'https://api.pay360.com',
-    'clientAfterPaymentUrl' => 'https://client.avrillo.co.uk/main/afterPayment',
-    'username' => 'J2HTWOJPV5AJ7LNX33LNELOM7A',
-    'password'    => 'TghGvrkktwQSd0GcuzZVkg==',
-    'merchantKey' => '8001746',
-    'merchantReference' => '761585761585'
-];
 class Config {
 
     private $username               = "PAY360_USERNAME";
